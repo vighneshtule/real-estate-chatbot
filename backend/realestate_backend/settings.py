@@ -10,6 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+# OpenAI Configuration
+
+OPENAI_API_KEY = 'Your Api key'       #<-- enter your api key
+
+
 import os
 from pathlib import Path
 
@@ -134,6 +139,3 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
-# OpenAI Configuration
-
-OPENAI_API_KEY = 'Your Api key'       #<-- enter your api key
