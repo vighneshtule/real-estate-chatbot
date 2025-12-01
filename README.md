@@ -28,7 +28,7 @@ The Real Estate Analysis Chatbot is a web-based analytical tool that accepts use
 [Terminal Logs of API queries]![alt text](image.png)
 
 ### Demo Video
-<video controls src="file:///E:/Users/DELL/Downloads/React%20App%20-%20Brave%202025-12-02%2002-11-13%20(1).mp4"></video>
+file:///E:/Users/DELL/Downloads/React%20App%20-%20Brave%202025-12-02%2002-11-13%20(1).mp4
 
 
 ---
