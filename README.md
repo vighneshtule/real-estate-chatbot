@@ -1,5 +1,3 @@
-markdown
-Copy code
 # Real Estate Analysis Chatbot
 
 A full-stack AI-assisted real-estate analytics platform built using Django + React.
