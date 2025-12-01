@@ -1,0 +1,83 @@
+/* frontend/src/App.css */
+/* Replace ALL content with this */
+
+.App {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.container {
+  max-width: 1200px;
+}
+
+h1 {
+  color: white;
+  font-weight: bold;
+}
+
+.lead {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.summary-text {
+  white-space: pre-wrap;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-header {
+  border-radius: 12px 12px 0 0 !important;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.table-responsive {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.input-group-lg .form-control {
+  border-radius: 8px 0 0 8px;
+}
+
+.input-group-lg .btn {
+  border-radius: 0 8px 8px 0;
+  padding: 0 30px;
+}
+
+.gap-2 {
+  gap: 0.5rem !important;
+}
