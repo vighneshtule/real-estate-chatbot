@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 # OpenAI Configuration
 
-OPENAI_API_KEY = 'Your Api key'       #<-- enter your api key
+OPENAI_API_KEY = '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'       #<-- enter your api key
 
 
 import os
