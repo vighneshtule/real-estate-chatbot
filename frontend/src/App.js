@@ -4,6 +4,7 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import config from './config';
 
 function App() {
   const [query, setQuery] = useState('');
@@ -15,7 +16,7 @@ function App() {
   const [uploadingFile, setUploadingFile] = useState(false);
 
   // API Base URL - Change this to your deployed backend URL
-  const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://real-estate-chatbot-ev0r.onrender.com';
+  const API_BASE_URL = config.backendURL;
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];

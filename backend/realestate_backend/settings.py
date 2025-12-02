@@ -127,17 +127,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CORS Configuration
+# Updated CORS Configuration
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "https://real-estate-chatbot-kappa.vercel.app",
 ]
+CORS_ALLOW_ALL_ORIGINS = False  # Restrict to specific origins
 
-# In production, allow all origins (or specify your Vercel domain)
-CORS_ALLOW_ALL_ORIGINS = True  # For now, change later to specific domain
-
-# Path to Excel data file (not needed for upload version)
-# DATA_FILE_PATH = os.path.join(BASE_DIR.parent, 'data', 'real_estate_data.xlsx')
+# Media files configuration for file uploads
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # OpenAI Configuration - USE ENVIRONMENT VARIABLE IN PRODUCTION
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', 'your-local-key-here')
