@@ -1,0 +1,36 @@
+# Python
+*.pyc
+__pycache__/
+venv/
+*.sqlite3
+*.db
+.env
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build
+build/
+dist/
+
+# Environment
+.env
+.env.local
+*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data files
+data/
+*.xlsx
+*.xls
+*.csv

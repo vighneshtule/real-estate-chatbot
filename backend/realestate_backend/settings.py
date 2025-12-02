@@ -10,11 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-# OpenAI Configuration
-
-OPENAI_API_KEY = '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'       #<-- enter your api key
-
-
 import os
 from pathlib import Path
 
@@ -31,7 +26,7 @@ SECRET_KEY = 'django-insecure-your-secret-key-here-change-this-in-production'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.onrender.com', '.vercel.app']
 
 
 # Application definition
@@ -138,4 +133,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
+# In production, allow all origins (or specify your Vercel domain)
+CORS_ALLOW_ALL_ORIGINS = True  # For now, change later to specific domain
 
+# Path to Excel data file (not needed for upload version)
+# DATA_FILE_PATH = os.path.join(BASE_DIR.parent, 'data', 'real_estate_data.xlsx')
+
+# OpenAI Configuration - USE ENVIRONMENT VARIABLE IN PRODUCTION
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', 'your-local-key-here')
