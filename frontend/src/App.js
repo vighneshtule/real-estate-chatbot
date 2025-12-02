@@ -14,6 +14,9 @@ function App() {
   const [fileInfo, setFileInfo] = useState(null);
   const [uploadingFile, setUploadingFile] = useState(false);
 
+  // API Base URL - Change this to your deployed backend URL
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://real-estate-chatbot-ev0r.onrender.com';
+
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -26,7 +29,7 @@ function App() {
     setResult(null);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/upload/', formData, {
+      const response = await axios.post(`${API_BASE_URL}/api/upload/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -62,7 +65,7 @@ function App() {
     setResult(null);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/analyze/', {
+      const response = await axios.post(`${API_BASE_URL}/api/analyze/`, {
         query: query
       });
 
