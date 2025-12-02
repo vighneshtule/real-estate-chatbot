@@ -16,7 +16,7 @@ function App() {
   const [uploadingFile, setUploadingFile] = useState(false);
 
   // API Base URL - Change this to your deployed backend URL
-  const API_BASE_URL = config.backendURL;
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://real-estate-chatbot-ev0r.onrender.com';
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
@@ -30,18 +30,24 @@ function App() {
     setResult(null);
 
     try {
+      console.log(`Uploading file to: ${API_BASE_URL}/api/upload/`);
+      console.log(`File: ${file.name}, Size: ${file.size} bytes`);
+      
       const response = await axios.post(`${API_BASE_URL}/api/upload/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        timeout: 30000, // 30 second timeout
       });
 
+      console.log('Upload response:', response.data);
       setFileUploaded(true);
       setFileInfo(response.data);
       setError('');
     } catch (err) {
-      setError('Error uploading file. Please check the file format.');
-      console.error(err);
+      console.error('Upload error:', err);
+      const errorMessage = err.response?.data?.error || err.message || 'Error uploading file. Please check the file format and try again.';
+      setError(errorMessage);
       setFileUploaded(false);
     } finally {
       setUploadingFile(false);
