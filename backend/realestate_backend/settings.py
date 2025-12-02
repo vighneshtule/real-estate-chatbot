@@ -127,15 +127,29 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Updated CORS Configuration
+# CORS Configuration
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
     "https://real-estate-chatbot-kappa.vercel.app",
+    "https://real-estate-chatbot-ev0r.onrender.com",
 ]
-CORS_ALLOW_ALL_ORIGINS = False  # Restrict to specific origins
+
+CORS_ALLOW_ALL_ORIGINS = False
+
+# CSRF Settings for cross-domain requests
+CSRF_TRUSTED_ORIGINS = [
+    "https://real-estate-chatbot-kappa.vercel.app",
+    "https://real-estate-chatbot-ev0r.onrender.com",
+]
 
 # Media files configuration for file uploads
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Allow large file uploads (up to 100MB)
+FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100MB
 
 # OpenAI Configuration - USE ENVIRONMENT VARIABLE IN PRODUCTION
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', 'your-local-key-here')
