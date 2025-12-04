@@ -4,7 +4,6 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import config from './config';
 
 function App() {
   const [query, setQuery] = useState('');
@@ -14,9 +13,10 @@ function App() {
   const [fileUploaded, setFileUploaded] = useState(false);
   const [fileInfo, setFileInfo] = useState(null);
   const [uploadingFile, setUploadingFile] = useState(false);
+  const [wakingUp, setWakingUp] = useState(false);
 
   // API Base URL - Change this to your deployed backend URL
-  const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://real-estate-chatbot-ev0r.onrender.com';
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
@@ -26,29 +26,31 @@ function App() {
     formData.append('file', file);
 
     setUploadingFile(true);
+    setWakingUp(true);
     setError('');
     setResult(null);
 
     try {
-      console.log(`Uploading file to: ${API_BASE_URL}/api/upload/`);
-      console.log(`File: ${file.name}, Size: ${file.size} bytes`);
-      
       const response = await axios.post(`${API_BASE_URL}/api/upload/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        timeout: 30000, // 30 second timeout
+        timeout: 60000, // 60 seconds timeout for cold starts
       });
 
-      console.log('Upload response:', response.data);
       setFileUploaded(true);
       setFileInfo(response.data);
       setError('');
+      setWakingUp(false);
     } catch (err) {
-      console.error('Upload error:', err);
-      const errorMessage = err.response?.data?.error || err.message || 'Error uploading file. Please check the file format and try again.';
-      setError(errorMessage);
+      if (err.code === 'ECONNABORTED') {
+        setError('Server is waking up from sleep. Please try again in a moment.');
+      } else {
+        setError('Error uploading file. Please check the file format.');
+      }
+      console.error(err);
       setFileUploaded(false);
+      setWakingUp(false);
     } finally {
       setUploadingFile(false);
     }
@@ -74,6 +76,8 @@ function App() {
     try {
       const response = await axios.post(`${API_BASE_URL}/api/analyze/`, {
         query: query
+      }, {
+        timeout: 60000, // 60 seconds timeout for AI processing
       });
 
       setResult(response.data);
@@ -120,7 +124,7 @@ function App() {
                 {uploadingFile && (
                   <div className="alert alert-info">
                     <span className="spinner-border spinner-border-sm me-2"></span>
-                    Uploading file...
+                    {wakingUp ? 'Waking up server (free tier - first load takes 30-60s)...' : 'Uploading file...'}
                   </div>
                 )}
 
