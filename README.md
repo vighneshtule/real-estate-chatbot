@@ -3,7 +3,7 @@
 A full-stack AI-powered real estate analytics platform that processes property data and provides intelligent insights using natural language queries.
 
 **🌐 Live Demo:** 
-- **Frontend:** https://real-estate-chatbot-kappa.vercel.app/
+- **Frontend:** https://real-estate-chatbot-hbzp.vercel.app/
 - **Backend API:** https://real-estate-chatbot-ev0r.onrender.com/
 
 ---
