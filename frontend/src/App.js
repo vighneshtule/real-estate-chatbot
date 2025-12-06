@@ -99,8 +99,9 @@ function App() {
     <div className="App">
       <div className="container py-5">
         <div className="text-center mb-4">
-          <h1 className="display-4">🏘️ Real Estate Analysis Chatbot</h1>
-          <p className="lead text-muted">Upload your data and get AI-powered insights!</p>
+          <h1 className="display-4">📊 Universal Data Analyzer</h1>
+          <p className="lead text-muted">Upload ANY data file and get AI-powered insights!</p>
+          <small className="text-white-50">Supports: PDF, Excel, CSV, and more</small>
         </div>
 
         {/* File Upload Section */}
@@ -109,13 +110,13 @@ function App() {
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">📁 Step 1: Upload Your Data</h5>
-                <p className="text-muted small">Supported formats: Excel (.xlsx, .xls), CSV</p>
+                <p className="text-muted small">Supported: PDF, Excel (.xlsx, .xls), CSV, TSV - Any type of data!</p>
                 
                 <div className="mb-3">
                   <input
                     type="file"
                     className="form-control"
-                    accept=".xlsx,.xls,.csv"
+                    accept=".xlsx,.xls,.csv,.tsv,.pdf"
                     onChange={handleFileUpload}
                     disabled={uploadingFile}
                   />
@@ -153,14 +154,15 @@ function App() {
             <div className="col-md-8">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title">💬 Step 2: Ask Your Question</h5>
+                  <h5 className="card-title">💬 Step 2: Ask Anything!</h5>
+                  <p className="text-muted small">Ask questions about your data in natural language</p>
                   
                   <form onSubmit={handleSubmit}>
                     <div className="input-group input-group-lg">
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="e.g., Analyze Wakad"
+                        placeholder="e.g., What are the trends? Show me top performers. Analyze Q4 results."
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         disabled={loading}
@@ -242,16 +244,16 @@ function App() {
                       <ResponsiveContainer width="100%" height={400}>
                         <LineChart data={result.chart_data}>
                           <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis dataKey="year" />
+                          <XAxis dataKey="category" />
                           <YAxis />
                           <Tooltip />
                           <Legend />
                           <Line 
                             type="monotone" 
-                            dataKey="price" 
+                            dataKey="value" 
                             stroke="#8884d8" 
                             strokeWidth={2}
-                            name="Price (₹)"
+                            name={result.chart_data[0]?.label || "Value"}
                           />
                         </LineChart>
                       </ResponsiveContainer>
